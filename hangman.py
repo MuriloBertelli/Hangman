@@ -30,14 +30,11 @@ class TelaTheme(Screen):
     def theme_selecionado(self, theme):
         self.manager.current = 'Hangman'
         if theme == 'COR':
-            self.manager.get_screen(
-                'Hangman').palavra_selecionada = self.theme.get('COR')
+            self.manager.get_screen('Hangman').palavra_selecionada = self.theme.get('COR')
         elif theme == 'FRUTA':
-            self.manager.get_screen(
-                'Hangman').palavra_selecionada = self.theme.get('FRUTA')
+            self.manager.get_screen('Hangman').palavra_selecionada = self.theme.get('FRUTA')
         elif theme == 'ANIMAL':
-            self.manager.get_screen(
-                'Hangman').palavra_selecionada = self.theme.get('ANIMAL')
+            self.manager.get_screen('Hangman').palavra_selecionada = self.theme.get('ANIMAL')
 
         self.manager.get_screen('Hangman').startGame()
 
