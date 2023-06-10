@@ -1,0 +1,316 @@
+<GerenciadorTelas>:
+    TelaInicio:
+    TelaTheme:
+    Hangman:
+
+
+
+<TelaInicio>:
+    canvas:
+        Color:
+            rgba: 215, 219, 216,1  
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation:'vertical'
+        size_hint: 1, 0.5
+        pos_hint: {'top': 1}
+        
+        Label:
+            font_size:45
+            text: ' [font=fonts/font of the game.ttf][color=#00FFFF] JOGO DA FORCA[/color][/font]'
+            markup: True
+            color:0,0,0
+
+
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint:0.2 ,0.1
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        
+        
+        Button:
+            
+            text: 'Iniciar'
+            background_color: (0, 100, 0)
+            on_press: 
+                app.root.current = 'TelaTheme' 
+                     
+<TelaTheme>:
+    name: 'TelaTheme'
+    canvas:
+        Color:
+            rgba: 215, 219, 216, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            markup: True
+            text: ' [font=fonts/font of the game.ttf][color=#00FFFF] SELECIONE UM TEMA[/color][/font]'
+            color: 0, 0, 0
+            font_size: 45
+            size_hint: 0.3, 0.2
+            pos_hint: {'center_x': 0.2, 'top': 1.0}
+       
+    BoxLayout:
+        spacing: 40 
+        orientation: 'horizontal'
+        pos_hint: {'center_x':0.5, 'center_y':0.5}
+        size_hint_x: 0.5
+        Button:
+            background_color: 0, 0, 0, 0 
+            markup: True
+            text: '[font=fonts/font of the game.ttf][color=#00FFFF] COR[/color][/font]'
+            font_size: 35
+            size_hint: 0.2, 0.1
+            pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+            on_press:
+                root.theme_selecionado("COR")   
+                      
+        Button:
+            background_color: 0, 0, 0, 0
+            markup: True  
+            text: '[font=fonts/font of the game.ttf][color=#00FFFF] FRUTA[/color][/font]'
+            font_size: 35
+            size_hint: 0.2, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_press:
+                # app.root.current = 'Hangman'
+                root.theme_selecionado("FRUTA")
+
+        Button:
+            background_color: 0, 0, 0, 0
+            markup: True
+            text: '[font=fonts/font of the game.ttf][color=#00FFFF] ANIMAL[/color][/font]'
+            font_size: 35
+            size_hint: 0.2, 0.1
+            pos_hint: {'center_x': 1.0, 'center_y': 0.5}
+            on_press:
+                root.theme_selecionado("ANIMAL")
+            
+<Hangman>:
+    name:'Hangman'
+    canvas:
+        Color:
+            rgba: 215, 219, 216,1  
+        Rectangle:
+            pos: self.pos
+            size: self.size
+       
+    BoxLayout:
+        orientation:'vertical'
+        ActionBar:
+            background_color: 0, 0, 0, 0
+            pos_hint: {'top': 1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    markup:True
+                    app_icon: 'image/icon.png'
+                    title:'[font=fonts/font of the game.ttf][color=#00FFFF] JOGO DA FORCA[/color][/font]'
+                    with_previous: False 
+                ActionOverflow:
+                ActionButton:
+                    markup: True
+                    text:'[font=fonts/font of the game.ttf][color=#00FFFF] REINICIAR[/color][/font]'
+                    on_press: root.restar()    
+                ActionButton:
+                    markup:True
+                    text:'[font=fonts/font of the game.ttf][color=#00FFFF] SAIR[/color][/font]'
+                    on_press: app.stop()
+        Image:
+            id: image_at
+            source: "image/0.png" 
+        Image:
+            id:win
+        Image:
+            id:lost
+        Label:
+            text:''
+            id:mensage              
+        Label:  
+            text: root.current_word
+            font_size: 30
+            color: 0,0,0
+        Label:
+            markup:True
+            text:""
+            id: mensagem_wrong 
+            font_size: 20
+            color: 0,0,0
+        Label:
+            text:''
+        Label:
+            text:''
+              
+    GridLayout:  
+        cols: 6
+        size_hint: 1, 0.2
+        pos_hint: {'center_x': 0.5, 'y': 0}  
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] V[/color][/font]'
+            on_press: root.check_guess('V')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] E[/color][/font]'
+            on_press: root.check_guess('E') 
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] R[/color][/font]'
+            on_press: root.check_guess('R')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] D[/color][/font]'
+            on_press: root.check_guess('D')    
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] Y[/color][/font]'
+            on_press: root.check_guess('Y')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] M[/color][/font]'
+            on_press: root.check_guess('M')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] L[/color][/font]'
+            on_press: root.check_guess('L')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] A[/color][/font]'
+            on_press: root.check_guess('A')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] F[/color][/font]'
+            on_press: root.check_guess('F')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] Ç[/color][/font]'
+            on_press: root.check_guess('Ç')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] W[/color][/font]'
+            on_press: root.check_guess('W')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] N[/color][/font]'
+            on_press: root.check_guess('N')                            
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] T[/color][/font]'
+            on_press: root.check_guess('T')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] C[/color][/font]'
+            on_press: root.check_guess('C')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] Q[/color][/font]'
+            on_press: root.check_guess('Q')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] I[/color][/font]'
+            on_press: root.check_guess('I')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] H[/color][/font]'
+            on_press: root.check_guess('H')
+        Button: 
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] O[/color][/font]'
+            on_press: root.check_guess('O')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] K[/color][/font]'
+            on_press: root.check_guess('K')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] P[/color][/font]'
+            on_press: root.check_guess('P')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] U[/color][/font]'
+            on_press: root.check_guess('U')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] J[/color][/font]'
+            on_press: root.check_guess('J')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] S[/color][/font]'
+            on_press: root.check_guess('S')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] X[/color][/font]'
+            on_press: root.check_guess('X')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] B[/color][/font]'
+            on_press: root.check_guess('B')
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] Z[/color][/font]'
+            on_press: root.check_guess('Z') 
+        Button:
+            markup:True
+            background_color: 0, 0, 0, 0
+            font_size: 20
+            text:'[font=fonts/game.ttf][color=#000000] G[/color][/font]'
+            on_press: root.check_guess('G')                                                        
