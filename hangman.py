@@ -1,17 +1,10 @@
 import pygame
-from kivy.core.audio import SoundLoader
 from pygame import mixer
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
-from kivy.uix.button import Button
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.pagelayout import PageLayout
-from kivy.uix.behaviors import DragBehavior
 from kivy.properties import StringProperty
 from kivy.clock import Clock
-from kivy.uix.actionbar import ActionBar
+
 
 
 class TelaInicio(Screen):
